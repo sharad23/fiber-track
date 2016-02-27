@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Fiber extends Model {
 
 	//
+	protected $table = 'fibers';
+	
+	protected $fillable = ['name','brand','available_length','total_length','cores'];
+	
+	public function cores(){
+
+		 return $this->hasMany('App\Model\FiberCore','fiber_id','id');
+	}
+
 
 }
