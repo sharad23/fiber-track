@@ -14,4 +14,9 @@ class FiberCore extends Model {
 		 return $this->belongsTo('App\Model\Fiber','fiber_id','id');
 	}
 
+	public function color(){
+
+		 return $this->belongsTo('App\Model\Color','color_id','id');
+	}
+
 }

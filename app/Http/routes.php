@@ -15,12 +15,23 @@ Route::get('users',function(){
         /*echo '<pre>';
         print_r(App\Model\Pod::all());
         echo '</pre>';*/
-        echo '<pre>';
+        /*echo '<pre>';
         print_r(App\Model\FiberCore::find(1)->fiber->toArray());
         echo '</pre>';
 
         echo '<pre>';
         print_r(App\Model\Fiber::find(1)->cores()->get()->toArray());
+        echo '</pre>';
+        */
+
+        echo '<pre>';
+        print_r(App\Model\Fiber::with(array('cores'=>function($query){
+                                          
+                                           $query->with('color');
+                                     }))
+        	                   ->where('id',1)
+        	                   ->get()
+        	                   ->toArray());
         echo '</pre>';
 });
 Route::get('/', 'WelcomeController@index');
