@@ -9,7 +9,7 @@ class Fiber extends Model {
 	//
 	protected $table = 'fibers';
 	
-	protected $fillable = ['name','brand','available_length','total_length','cores'];
+	protected $fillable = ['name','brand','available_length','total_length','cores','user_id'];
 	
 	public function cores(){
 

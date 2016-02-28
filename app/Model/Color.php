@@ -6,7 +6,7 @@ class Color extends Model {
 
 	//
 	protected $table = 'colors';
-	protected $fillable = ['name'];
+	protected $fillable = ['name','user_id'];
 	
 	
 }
