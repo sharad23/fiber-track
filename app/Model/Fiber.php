@@ -16,5 +16,15 @@ class Fiber extends Model {
 		 return $this->hasMany('App\Model\FiberCore','fiber_id','id');
 	}
 
+	public function user(){
+
+		 return $this->belongsTo('App\Model\User','user_id','id');
+	}
+
+	public function connections(){
+
+		 return $this->hasMany('App\Model\FiberConnection','fiber_id','id');
+	}
+
 
 }

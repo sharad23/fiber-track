@@ -29,11 +29,48 @@ Route::get('users',function(){
                                           
                                            $query->with('color');
                                      }))
+                               ->with('user')
+                               ->with('connections')
         	                   ->where('id',1)
         	                   ->get()
         	                   ->toArray());
         echo '</pre>';
 });
+
+Route::get('connect',function(){
+
+       echo '<pre>';
+       print_r(App\Model\FiberConnection::with('fiber')
+                               ->with(array('end1'=>function($query){
+                                        
+                                         $query->with('location');
+                                         $query->with('user');
+                                 }))
+                               ->with(array('end2'=>function($query){
+                                         
+                                         $query->with('location');
+                                         $query->with('user');
+                                }))
+                               ->with('user')
+                               ->with(array('cores'=>function($query){
+
+                                        $query->with('color');
+                                    }))
+                               ->get()
+                               ->toArray());
+       echo '<pre>';
+});
+
+Route::get('basedOnLocation',function(){
+
+      echo '<pre>';
+      print_r(App\Model\Location::where('name','naxal')
+                                ->get()
+                                ->toArray());
+      echo '</pre>';
+});
+
+
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
