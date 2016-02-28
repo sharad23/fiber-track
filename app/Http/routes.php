@@ -64,7 +64,28 @@ Route::get('connect',function(){
 Route::get('basedOnLocation',function(){
 
       echo '<pre>';
-      print_r(App\Model\Location::where('name','naxal')
+      print_r(App\Model\Location::with(array('ends'=>function($query){
+                                           
+                                         //get all connection
+                                        $query->with(array('end1_connections'=>function($query){
+                                              
+                                               $query->with(array('cores'=>function($query){
+                                                       
+                                                       $query->where('flag',0);
+  
+                                               }));
+                                        }));
+
+                                         $query->with(array('end2_connections'=>function($query){
+                                              
+                                               $query->with(array('cores'=>function($query){
+                                                       
+                                                       $query->where('flag',0);
+  
+                                               }));
+                                        }));
+                                 }))
+                                ->where('name','naxal')
                                 ->get()
                                 ->toArray());
       echo '</pre>';
