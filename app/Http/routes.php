@@ -142,6 +142,7 @@ Route::get('free',function(){
       echo '</pre>';
 });
 */
+
 Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 Route::resource('fiber','Fiber');
