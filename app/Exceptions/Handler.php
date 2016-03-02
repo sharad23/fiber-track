@@ -35,8 +35,14 @@ class Handler extends ExceptionHandler {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function render($request, Exception $e)
-	{
-		return parent::render($request, $e);
+	{    
+		if($e instanceof \DomainException){
+           
+                return response()->json(['error' => 'invalid_token'], 401);
+		}
+		
+        return parent::render($request, $e);
+		
 	}
 
 }

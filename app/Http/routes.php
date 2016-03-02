@@ -143,10 +143,30 @@ Route::get('free',function(){
 });
 */
 
-Route::get('/', 'WelcomeController@index');
-Route::get('home', 'HomeController@index');
-Route::resource('fiber','Fiber');
-Route::controllers([
+//Route::get('/', 'WelcomeController@index');
+//Route::get('home', 'HomeController@index');
+/*Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
-]);
+]);*/
+//Route::resource('auth','Autheticate',['only' => ['index']]);
+Route::get('test',function(){
+     
+     echo '<pre>';
+     print_r(Config::get('jwt-key.jwt-key'));
+     echo '</pre>';
+});
+
+Route::post('auth','Autheticate@index');
+Route::group(['prefix' => 'api','middleware' => ['token']], function()
+{
+        Route::resource('fiber','Fiber');
+        Route::resource('fiber-connection','FiberConnection');
+        Route::resource('fiber-connection-core','ConnectionCore');
+        Route::resource('color','Color');
+        Route::resource('end','End');
+        Route::resource('location','Location');
+        Route::resource('client','Client');
+        Route::resource('client-connection','ClientConnection');
+
+});
