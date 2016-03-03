@@ -38,8 +38,13 @@ class Handler extends ExceptionHandler {
 	{    
 		if($e instanceof \DomainException){
            
-                return response()->json(['error' => 'invalid_token'], 401);
+                return response()->json(['error' => 'invalid token'], 401);
 		}
+		elseif($e instanceof \UnexpectedValueException){
+                
+                return response()->json(['error' => 'no token provided'], 401);
+		}
+		
 		
         return parent::render($request, $e);
 		
