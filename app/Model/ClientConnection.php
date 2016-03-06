@@ -6,7 +6,7 @@ class ClientConnection extends Model {
 
 	protected $table = 'client_connections';
 	
-	protected $fillable = ['order','client_id','connection_core_id1','connection_core_id2'];
+	protected $fillable = ['order','client_id','connection_core_id1','connection_core_id2','connection_id'];
 
 	public function client(){
 

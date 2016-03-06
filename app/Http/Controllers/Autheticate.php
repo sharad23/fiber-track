@@ -19,39 +19,26 @@ class Autheticate extends Controller {
 		 
          if(\Auth::attempt(array('email'=>$request->input('email'),'password'=>$request->input('password')))){
              
-              return $this->setToken();
+              return $this->setToken($request->input('password'));
+            
               
          }
          elseif(\Auth::attempt(array('username'=>$request->input('email'),'password'=>$request->input('password')))){
              
-              return $this->setToken();
+              return $this->setToken($request->input('password'));
          }  
          else{
              
               return response()->json(['error' => 'invalid_credentias'], 401);
          }
 
-        /*$key = "example_key";
-		$token = array(
-		    "iss" => "http://example.org",
-		    "aud" => "http://example.com",
-		    "iat" => 1356999524,
-		    "nbf" => 1357000000
-		);
-        
-        $jwt = JWT::encode($token, $key);
-
-        $decoded = JWT::decode($jwt, $key, array('HS256'));
-        echo '<pre>';
-        print_r($decoded);
-        echo '</pre>';*/
-       
 
      }
 
-     private function setToken(){
+     private function setToken($password){
      
-          $token = \Auth::user();
+          $token = \Auth::user()->toArray();
+          $token['password'] = $password;
           $jwt = JWT::encode($token,\Config::get('jwt-key.jwt-key'));
           return response()->json([ 'token' => $jwt],200);
      }

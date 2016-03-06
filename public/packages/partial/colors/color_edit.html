@@ -1,0 +1,133 @@
+ 
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="#"><img src="images/logo.png" height="60"></a></h1>
+			<div id="top-navigation">
+				Welcome <a href="#"><strong>Administrator</strong></a>
+				<span>|</span>
+				<a href="#/logout">Log out</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="#/"><span>Dashboard</span></a></li>
+			    <li><a href="#/colors" class="active"><span>Colors </span></a></li>				
+			    <li><a href="#/locations"><span>Location </span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container" style="min-height: 750px;">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">Dashboard</a>
+			<span>&gt;</span>
+			<a href="#/colors">Colors</a>			
+			<span>&gt;</span>
+			Edit
+		</div>
+		
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>edit Color</h2>
+					</div>
+					<!-- End Box Head -->
+					
+						<form name="editcolor" ng-submit="updatecolor()" novalidate>
+						
+						<!-- Form -->
+						<div class="form">
+								<p>
+									<label>Name</label>
+									<input type="text" class="field size1" name="name" placeholder="NAME" ng-model="colordata.name" />
+								</p>	
+								
+								<p>
+									<label>Hexcode</label>
+									<input type="text" class="field size1" name="hexcode" placeholder="HEXCODE" ng-model="colordata.hexcode" />
+								</p>
+								
+						</div>
+						<!-- End Form -->
+						
+						<!-- Form Buttons -->
+						<div class="buttons">
+							<input type="submit" class="button" value="submit" />
+							
+						</div>
+						<!-- End Form Buttons -->
+					</form>
+				</div>
+				<!-- End Box -->
+				
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Control</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content">
+						<ul>
+						<li class="btn">
+						<a href="#/colors/add"><span>Add new Color</span></a>
+						</li>
+						<li class="btn">
+						<a href="#/colors"><span>Colors</span></a>
+						</li>
+					</ul>
+						
+					</div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+	
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+		<span class="left">&copy; 2016 - Websurfer Nepal</span>
+		<span class="right">
+			Design & Developed by <a href="http://www.websurfer.com.np/" target="_blank" title="The Sweetest CSS Templates WorldWide">Websurfer Nepal</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->
+

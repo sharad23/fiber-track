@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\CreateEndFormRequest;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -13,8 +13,14 @@ class End extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
-		//
+	{   
+		$ends = \App\Model\End::with('location')
+	                          ->with('user')
+	                          ->get()
+	                          ->toJson();
+
+	    return response()->json($ends);
+
 	}
 
 	/**
@@ -32,9 +38,12 @@ class End extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateEndFormRequest $request)
 	{
-		//
+	    $end = new \App\Model\End($request->only('name','location_id','longitude','lattitude'));
+		$end->user_id =  \Auth::user()->id;
+		$end->save(); 
+		return response()->json($end); 
 	}
 
 	/**
@@ -45,8 +54,26 @@ class End extends Controller {
 	 */
 	public function show($id)
 	{
-		//
-	}
+		$end = \App\Model\End::with('location')
+	                          ->with('user')
+	                          ->with('end1_connections')
+	                          ->with('end2_connections')
+	                          ->where('id',$id)
+	                          ->get()
+	                          ->toArray();
+
+	    //
+	    if(isset($end[0])){
+		        $end[0]['end_connections'] = array_merge($end[0]['end1_connections'], $end[0]['end2_connections']);
+			    unset($end[0]['end1_connections']);
+			    unset($end[0]['end2_connections']);
+			    return response()->json($end[0]);
+	    }
+	    else{
+
+                return response()->json(['message'=>'Id not Found'],404); 
+	    }
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -65,9 +92,13 @@ class End extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(CreateEndFormRequest $request,$id)
 	{
-		//
+		 $result =  \App\Model\End::where('id',$id)->update($request->only('name','location_id','longitude','lattitude'));
+		 if($result)
+	    	    return response()->json(['message'=>'Updated'],200);
+	    else
+	            return response()->json(['message'=>'Not Found'],404); 
 	}
 
 	/**
@@ -78,7 +109,11 @@ class End extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		  $result = \App\Model\End::destroy($id);
+		  if($result)
+	    	    return response()->json(['message'=>'Deleted'],200);
+	      else
+	            return response()->json(['message'=>'Not Found'],404);
 	}
 
 }

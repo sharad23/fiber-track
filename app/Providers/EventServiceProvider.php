@@ -22,11 +22,18 @@ class EventServiceProvider extends ServiceProvider {
 	 * @param  \Illuminate\Contracts\Events\Dispatcher  $events
 	 * @return void
 	 */
+
 	public function boot(DispatcherContract $events)
 	{
 		parent::boot($events);
-
-		//
+       /* \App\Model\Fiber::deleting(function($fiber)
+	    {
+	         \App\Model\FiberCore::where('fiber_id',$fiber->id)->delete();
+	    });*/
+        \App\Model\FiberConnection::observe(new \App\Observers\FiberConnectionObserver);
+        \App\Model\Fiber::observe(new \App\Observers\FiberObserver);
+        \App\Model\End::observe(new \App\Observers\EndObserver);
+		
 	}
 
 }

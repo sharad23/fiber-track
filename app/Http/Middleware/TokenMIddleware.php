@@ -16,7 +16,19 @@ class TokenMIddleware {
 	{
 		$token = $request->header('x-access-token');
 	    $decoded = JWT::decode($token,\Config::get('jwt-key.jwt-key'), array('HS256'));
-		return $next($request);
+	    //$request->attributes->add(['myAttribute' => 'myValue']);
+        if(\Auth::attempt(array('username'=>$decoded->username,'password'=>$decoded->password))){
+             
+               return $next($request);
+              
+        }
+        else{
+
+        	  return response()->json(['error' => 'invalid_credentias'], 401);
+        }
+
+
+	    
 
     }
 

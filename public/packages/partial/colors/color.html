@@ -1,0 +1,166 @@
+
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="#"><img src="images/logo.png" height="60"></a></h1>
+			<div id="top-navigation">
+				Welcome <a href="#"><strong>Administrator</strong></a>
+				<span>|</span>
+				<a href="#/logout">Log out</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="#/"><span>Dashboard</span></a></li>
+			    <li><a href="#/colors" class="active"><span>Colors </span></a></li>				
+			    <li><a href="#/locations"><span>Location </span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+
+<!-- Container -->
+<div id="container" style="min-height: 750px;">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">Dashboard</a>
+			<span>&gt;</span>
+			Colors
+		</div>
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">Colors</h2>
+						<div class="right">
+							<label>Items per page:</label>
+							<input type="number" min="1" max="100" class="form-control" ng-model="entryLimit">
+							<label>Search</label>
+							<input type="text" ng-model="search" class="field small-field" ng-change="filter()" placeholder="Search">
+									<!--<input type="text" class="field small-field" />
+										<input type="submit" class="button" value="search" />-->
+						</div>
+					</div>
+					<!-- End Box Head -->
+
+				<!-- Table -->
+					<div class="table">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<thead>
+								<th ng-click="sort('id')">Id
+									<span ng-show="sortKey == 'id' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'id' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								<th ng-click="sort('name')">Name
+									<span ng-show="sortKey == 'name' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'name' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								<th ng-click="sort('hexcode')">Hexcode
+									<span ng-show="sortKey == 'hexcode' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'hexcode' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								<th ng-click="sort('user_id')">Updated By
+									<span ng-show="sortKey == 'user_id' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'user_id' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								<th ng-click="sort('created_at')">Created Date
+									<span ng-show="sortKey == 'created_at' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'created_at' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								<th ng-click="sort('updated_at')">Updated Date
+									<span ng-show="sortKey == 'updated_at' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'updated_at' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								<th width="110" class="ac">Action</th>									
+							</thead>
+							<tbody>
+								<tr class="paginationclass" ng-repeat="color in filtered=(colors | filter:search) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit|orderBy:sortKey:reverse">
+								
+									<td>{{(entryLimit*(currentPage-1)+1)+($index) }}</td>
+									<td><a href="#/color_detail/{{ color.id }}">{{color.name}}</a></td>
+									<td>{{color.hexcode}}</td>
+									<td>{{color.user_id}}</td>		
+									<td>{{color.created_at}}</td>									
+									<td>{{color.updated_at}}</td>							
+									<td><a href="#/colors/{{color.id}}" class="ico edit">Edit</a>
+									<a ng-click="removecolor(color.id)" class="ico del">Delete</a></td>
+								</tr>						
+							</tbody>
+						
+						</table>
+						
+						
+						<!-- Pagging -->
+						<pagination data-boundary-links="true" data-num-pages="noOfPages" data-current-page="currentPage" max-size="maxSize" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></pagination>
+						<!-- End Pagging -->
+						
+					</div>
+				<!-- Table -->
+				</div>
+				<!-- End Box -->
+				
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Control</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content">
+						<ul>
+						<li class="btn">
+						<a href="#/colors/add"><span>Add new Color</span></a>
+						</li>
+						
+					</ul>
+						
+					</div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+	
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+		<span class="left">&copy; 2016 - Websurfer Nepal</span>
+		<span class="right">
+			Design & Developed by <a href="http://www.websurfer.com.np/" target="_blank" title="The Sweetest CSS Templates WorldWide">Websurfer Nepal</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->

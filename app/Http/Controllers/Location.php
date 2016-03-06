@@ -38,6 +38,7 @@ class Location extends Controller {
 	public function store(CreateLocationFormRequest $request)
 	{
 		 $location = new \App\Model\Location($request->only('user_id','name'));
+		 $location->user_id = \Auth::user()->id;
 		 $location->save();
 		 return response()->json($location,200);
 
@@ -49,9 +50,9 @@ class Location extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show(Request $request,$id)
+	public function show($key)
 	{
-		$location =  \App\Model\Location::where('id',$id)->get()->toArray();
+		$location =  \App\Model\Location::where('name', 'LIKE', "$key%")->get()->toArray();
 	    return response()->json($location);
 	}
 
@@ -61,9 +62,10 @@ class Location extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($key)
+	public function edit($id)
 	{
-		$location =  \App\Model\Location::where('name', 'LIKE', "$key%")->get()->toArray();
+		
+	    $location =  \App\Model\Location::where('id',$id)->get()->toArray();
 	    return response()->json($location);
 	}
 

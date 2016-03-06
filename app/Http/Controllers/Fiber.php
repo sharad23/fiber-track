@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\CreateFiberFormRequest;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -20,6 +20,7 @@ class Fiber extends Controller {
 		                          ->toJson();
 
 	    return response()->json($fibers);
+
          
     }
 
@@ -38,10 +39,25 @@ class Fiber extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		//
-	}
+	public function store(CreateFiberFormRequest $request)
+	{   
+		
+		$fiber = new \App\Model\Fiber($request->only('name','brand','avilable_length','total_length','cores'));
+		$fiber->user_id =  \Auth::user()->id;
+		$fiber->save();
+
+		//store colors
+		$fiberCores = [];
+        foreach($request->input('fiber_cores') as $key => $row){
+              
+               $fiberCores[] = new \App\Model\FiberCore(['color_id' => $row]);
+		} 
+		$cores = $fiber->cores()->saveMany($fiberCores);
+		$fiber['cores'] = $cores;
+        return response()->json($fiber); 
+        
+  
+   }
 
 	/**
 	 * Display the specified resource.
@@ -68,7 +84,7 @@ class Fiber extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		
 	}
 
 	/**
@@ -77,9 +93,24 @@ class Fiber extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(CreateFiberFormRequest $request,$id)
 	{
-		//
+	    $result =  \App\Model\Fiber::where('id',$id)->update($request->only('name','brand','avilable_length','total_length','cores'));
+        $fiberCores_ids = [];
+        foreach($request->input('fiber_cores') as $key => $row){
+              
+               $core = \App\Model\FiberCore::find($request->input('fiber_cores_id')[$key]) ?: new \App\Model\FiberCore();
+        	   $core->color_id = $row;
+        	   $core->fiber_id = $id;
+        	   $core->save();
+               $fiberCores_ids[] = $core->id; 
+		}
+		\App\Model\FiberCore::where('fiber_id', $id)->whereNotIn('id', $fiberCores_ids)->delete(); 
+	    
+	    if($result)
+	    	    return response()->json(['message'=>'Updated'],200);
+	    else
+	            return response()->json(['message'=>'Not Found'],404);   
 	}
 
 	/**
@@ -90,7 +121,11 @@ class Fiber extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$result =  \App\Model\Fiber::destroy($id);
+		if($result)
+	    	    return response()->json(['message'=>'Deleted'],200);
+	    else
+	            return response()->json(['message'=>'Not Found'],404);
 	}
 
 }

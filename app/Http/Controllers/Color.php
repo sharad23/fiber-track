@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateColorFormRequest;
+use App\Http\Requests\UpdateColorFormRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -12,10 +14,13 @@ class Color extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		//
-	}
+	public function index(Request $request)
+	{   
+		
+		$colors =  \App\Model\Color::all();
+		
+		return response()->json($colors);
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -24,7 +29,7 @@ class Color extends Controller {
 	 */
 	public function create()
 	{
-		//
+		 
 	}
 
 	/**
@@ -32,9 +37,13 @@ class Color extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		//
+	public function store(CreateColorFormRequest $request)
+	{   
+
+		$color =  new \App\Model\Color($request->only('name','hexcode'));
+		$color->user_id = \Auth::user()->id;
+		$color->save();
+        return response()->json($color);
 	}
 
 	/**
@@ -43,9 +52,10 @@ class Color extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($key)
 	{
-		//
+	    $color =  \App\Model\Color::where('name', 'LIKE', "$key%")->get()->toArray();
+	    return response()->json($color);
 	}
 
 	/**
@@ -56,7 +66,8 @@ class Color extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$location =  \App\Model\Color::where('id',$id)->get()->toArray();
+	    return response()->json($location);
 	}
 
 	/**
@@ -65,9 +76,13 @@ class Color extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(UpdateColorFormRequest $request,$id)
 	{
-		//
+		$result = \App\Model\Color::where('id', $id)->update($request->only('name','hexcode'));
+		if($result) 
+		       return response()->json(['message'=>'Updated'],200);
+		else
+		       return response()->json(['message'=>'Data Not Found'],404); 
 	}
 
 	/**
@@ -78,7 +93,11 @@ class Color extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$result = \App\Model\Color::destroy($id);
+		if($result) 
+		       return response()->json(['message'=>'deleted'],200);
+		else
+		       return response()->json(['message'=>'Data Not Found'],404); 
 	}
 
 }

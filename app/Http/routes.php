@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -150,13 +151,27 @@ Route::get('free',function(){
 	'password' => 'Auth\PasswordController',
 ]);*/
 //Route::resource('auth','Autheticate',['only' => ['index']]);
-Route::get('test',function(){
-     
-     echo '<pre>';
-     print_r(Config::get('jwt-key.jwt-key'));
-     echo '</pre>';
-});
+Route::get('testis',function(){
 
+    /*$data =  \App\Model\FiberConnection::with('cores')
+                                        ->where('id','99')
+                                        ->get()
+                                        ->toArray();
+
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';*/
+
+    \App\Model\ClientConnection::where('client_id','1')
+                               ->where('order','>','1')
+                               ->increment('order');
+
+
+});
+Route::get('/',function(){
+   
+       return View::make('home');
+});
 Route::post('auth','Autheticate@index');
 Route::group(['prefix' => 'api','middleware' => ['token']], function()
 {
@@ -168,5 +183,6 @@ Route::group(['prefix' => 'api','middleware' => ['token']], function()
         Route::resource('location','Location');
         Route::resource('client','Client');
         Route::resource('client-connection','ClientConnection');
+        Route::post('fiber-break/{id}','FiberConnection@fiberbreak');
 
 });
