@@ -162,11 +162,23 @@ Route::get('testis',function(){
     print_r($data);
     echo '</pre>';*/
 
-    \App\Model\ClientConnection::where('client_id','1')
+   /* \App\Model\ClientConnection::where('client_id','1')
                                ->where('order','>','1')
-                               ->increment('order');
+                               ->increment('order');*/
+    
+    /*echo '<pre>';
+    print_r(Event::fire(new App\Events\AddEnd('sharad')));
+    echo '</pre>';*/
+    $data = new \App\Model\Location();
+    
+  
 
-
+    $data = \App\Model\Location::whereIn('id',[$data->id])
+                        ->get();
+    
+     echo '<pre>';
+     print_r($data);
+     echo '</pre>';
 });
 Route::get('/',function(){
    

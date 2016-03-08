@@ -1,0 +1,148 @@
+ 
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="#"><img src="images/logo.png" height="60"></a></h1>
+			<div id="top-navigation">
+				Welcome <a href="#"><strong>Administrator</strong></a>
+				<span>|</span>
+				<a href="#/logout">Log out</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			     <li><a href="#/"><span>Dashboard</span></a></li>
+			    <li><a href="#/colors" ><span>Colors </span></a></li>				
+			    <li><a href="#/locations"><span>Locations </span></a></li>			
+			    <li><a href="#/fibers" class="active"><span>Fibers </span></a></li>					
+			    <li><a href="#/fiber_cores"><span>Fiber Cores </span></a></li>		
+			    <li><a href="#/fiber_connections"><span>Fiber Connections </span></a></li>
+			    <li><a href="#/ends"><span>Ends </span></a></li>				
+			    <li><a href="#/connection_cores"><span>Connection Cores </span></a></li>
+			    <li><a href="#/clients"><span>Clients </span></a></li>				
+			    <li><a href="#/client_connections"><span>Client Connections </span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container" style="min-height: 750px;">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">Dashboard</a>
+			<span>&gt;</span>
+			<a href="#/fibers">Fibers</a>			
+			<span>&gt;</span>
+			Create
+		</div>
+		
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Create Fiber</h2>
+					</div>
+					<!-- End Box Head -->
+					
+						<form name="editfiber" ng-submit="addfiber()" novalidate>
+						
+						<!-- Form -->
+						<div class="form">
+								<p>
+									<label>Name</label>
+									<input type="text" class="field size1" name="name" placeholder="NAME" ng-model="newFiber.name" />
+								</p>	
+								
+								<p>
+									<label>Brand</label>
+									<input type="text" class="field size1" name="brand" placeholder="HEXCODE" ng-model="newFiber.brand" />
+								</p>
+								<p>
+									<label>Total Length</label>
+									<input type="text" class="field size1" name="total_length" placeholder="TOTAL LENGTH" ng-model="newFiber.total_length" />
+								</p>
+								<p>
+									<label>Available Length</label>
+									<input type="text" class="field size1" name="hexcode" placeholder="AVAILABLE LENGTH" ng-model="newFiber.available_length" />
+								</p>
+								<p>
+									<label>Cores</label>
+									<input type="text" class="field size1" name="cores" placeholder="CORES" ng-model="newFiber.cores" />
+								</p>
+								
+								
+						</div>
+						<!-- End Form -->
+						
+						<!-- Form Buttons -->
+						<div class="buttons">
+							<input type="submit" class="button" value="submit" />
+						</div>
+						<!-- End Form Buttons -->
+					</form>
+				</div>
+				<!-- End Box -->
+				
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Control</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content">
+						<ul>
+						<li class="btn">
+						<a href="#/fibers" class="add-button"><span>Fibers</span></a>
+						</li>
+						
+					</div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+	
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+		<span class="left">&copy; 2016 - Websurfer Nepal</span>
+		<span class="right">
+			Design & Developed by <a href="http://www.websurfer.com.np/" target="_blank" title="The Sweetest CSS Templates WorldWide">Websurfer Nepal</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->
+

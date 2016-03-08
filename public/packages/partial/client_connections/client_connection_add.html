@@ -1,0 +1,149 @@
+ 
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="#"><img src="images/logo.png" height="60"></a></h1>
+			<div id="top-navigation">
+				Welcome <a href="#"><strong>Administrator</strong></a>
+				<span>|</span>
+				<a href="#/logout">Log out</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="#/" ><span>Dashboard</span></a></li>
+			    <li><a href="#/colors" ><span>Colors </span></a></li>				
+			    <li><a href="#/locations"><span>Locations </span></a></li>			
+			    <li><a href="#/fibers"><span>Fibers </span></a></li>					
+			    <li><a href="#/fiber_cores"><span>Fiber Cores </span></a></li>		
+			    <li><a href="#/fiber_connections"><span>Fiber Connections </span></a></li>
+			    <li><a href="#/ends"><span>Ends </span></a></li>				
+			    <li><a href="#/connection_cores"><span>Connection Cores </span></a></li>
+			    <li><a href="#/clients"><span>Clients </span></a></li>				
+			    <li><a href="#/client_connections" class="active"><span>Client Connections </span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container" style="min-height: 750px;">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">Dashboard</a>
+			<span>&gt;</span>
+			<a href="#/client_connections">Client Connections</a>			
+			<span>&gt;</span>
+			Create
+		</div>
+		
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Create Client Connection</h2>
+					</div>
+					<!-- End Box Head -->
+					
+						<form name="addclient_connection" ng-submit="addclient_connection()" novalidate>
+						
+						<!-- Form -->
+						<div class="form">
+								<p>
+									<label>Order</label>
+									<input type="text" class="field size1" name="order" placeholder="ORDER" ng-model="newClient_Connection.name" />
+								</p>	
+								
+								<p>
+									<label>Connection Core 1</label>
+									<input type="text" class="field size1" name="connection_core1" placeholder="CONNECTION CORE 1" ng-model="newClient_Connection.connection_core_id1" />
+								</p>
+								<p>
+									<label>Connection Core 2</label>
+									<input type="text" class="field size1" name="connection_core2" placeholder="CONNECTION CORE 2" ng-model="newClient_Connection.connection_core_id2" />
+								</p>	
+								
+								<p>
+									<label>Client </label>
+									<input type="text" class="field size1" name="client" placeholder="CLIENT" ng-model="newClient_Connection.client_id" />
+								</p>
+								
+								<p>
+									<label>Connection Id</label>
+									<input type="text" class="field size1" name="connection_id" placeholder="CONNECTION ID" ng-model="newClient_Connection.connection_id" />
+								</p>
+								
+						</div>
+						<!-- End Form -->
+						
+						<!-- Form Buttons -->
+						<div class="buttons">
+							<input type="submit" class="button" value="submit" />
+						</div>
+						<!-- End Form Buttons -->
+					</form>
+				</div>
+				<!-- End Box -->
+				
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Control</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content">
+						<ul>
+						<li class="btn">
+						<a href="#/client_connections" class="add-button"><span>Client Connection</span></a>
+						</li>
+						
+					</div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+	
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+		<span class="left">&copy; 2016 - Websurfer Nepal</span>
+		<span class="right">
+			Design & Developed by <a href="http://www.websurfer.com.np/" target="_blank" title="The Sweetest CSS Templates WorldWide">Websurfer Nepal</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->
+

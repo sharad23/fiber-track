@@ -17,7 +17,7 @@ class End extends Controller {
 		$ends = \App\Model\End::with('location')
 	                          ->with('user')
 	                          ->get()
-	                          ->toJson();
+	                          ->toArray();
 
 	    return response()->json($ends);
 

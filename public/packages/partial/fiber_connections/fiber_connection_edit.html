@@ -1,0 +1,149 @@
+ 
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="#"><img src="images/logo.png" height="60"></a></h1>
+			<div id="top-navigation">
+				Welcome <a href="#"><strong>Administrator</strong></a>
+				<span>|</span>
+				<a href="#/logout">Log out</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			     <li><a href="#/" ><span>Dashboard</span></a></li>
+			    <li><a href="#/colors" ><span>Colors </span></a></li>				
+			    <li><a href="#/locations"><span>Locations </span></a></li>			
+			    <li><a href="#/fibers"><span>Fibers </span></a></li>					
+			    <li><a href="#/fiber_cores"><span>Fiber Cores </span></a></li>		
+			    <li><a href="#/fiber_connections" class="active"><span>Fiber Connections </span></a></li>
+			    <li><a href="#/ends"><span>Ends </span></a></li>				
+			    <li><a href="#/connection_cores"><span>Connection Cores </span></a></li>
+			    <li><a href="#/clients"><span>Clients </span></a></li>				
+			    <li><a href="#/client_connections"><span>Client Connections </span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container" style="min-height: 750px;">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">Dashboard</a>
+			<span>&gt;</span>
+			<a href="#/fiber_connections">Fiber Connections</a>			
+			<span>&gt;</span>
+			Edit
+		</div>
+		
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>edit Color</h2>
+					</div>
+					<!-- End Box Head -->
+					
+						<form name="editfiber_connection" ng-submit="updatefiber_connection()" novalidate>
+						
+						<!-- Form -->
+						<div class="form">
+								
+								<p>
+									<label>End1</label>
+									<input type="text" class="field size1" name="end1" placeholder="END1" ng-model="fiber_connectiondata.end1.id" />
+									 <!--<select ng-model="fiber_connectiondata.end1.id" ng-options="values.indexOf(selectedItem) as selectedItem for selectedItem in values">
+									  <option value="">--Please select--</option>
+									  </select>-->
+								</p>	
+								
+								<p>
+									<label>End2</label>
+									<input type="text" class="field size1" name="end2" placeholder="END2" ng-model="fiber_connectiondata.end2.id" />
+								</p>
+								
+								<p>
+									<label>Fiber</label>
+									<input type="text" class="field size1" name="fiber_id" placeholder="FIBER" ng-model="fiber_connectiondata.fiber_id" />
+								</p>
+								
+						</div>
+						<!-- End Form -->
+						
+						<!-- Form Buttons -->
+						<div class="buttons">
+							<input type="submit" class="button" value="submit" />
+							
+						</div>
+						<!-- End Form Buttons -->
+					</form>
+				</div>
+				<!-- End Box -->
+				
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Control</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content">
+						<ul>
+						<li class="btn">
+						<a href="#/fiber_connections/add"><span>Add new Fiber Connection</span></a>
+						</li>
+						<li class="btn">
+						<a href="#/fiber_connections"><span>Fiber Connections</span></a>
+						</li>
+					</ul>
+						
+					</div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+	
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+		<span class="left">&copy; 2016 - Websurfer Nepal</span>
+		<span class="right">
+			Design & Developed by <a href="http://www.websurfer.com.np/" target="_blank" title="The Sweetest CSS Templates WorldWide">Websurfer Nepal</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->
+

@@ -6,7 +6,7 @@ class Client extends Model {
 
 	protected $table = 'clients';
 	
-	protected $fillable = ['name','user_id','location_id','service_type','longitude','lattitude'];
+	protected $fillable = ['name','user_id','location_id','service_type','core_type','longitude','lattitude'];
 
 	public function connections(){
 

@@ -17,8 +17,15 @@
 		<div id="navigation">
 			<ul>
 			    <li><a href="#/"><span>Dashboard</span></a></li>
-			    <li><a href="#/colors" class="active"><span>Colors </span></a></li>				
-			    <li><a href="#/locations"><span>Location </span></a></li>
+			    <li><a href="#/colors"  class="active"><span>Colors </span></a></li>				
+			    <li><a href="#/locations"><span>Locations </span></a></li>			
+			    <li><a href="#/fibers"><span>Fibers </span></a></li>					
+			    <li><a href="#/fiber_cores"><span>Fiber Cores </span></a></li>		
+			    <li><a href="#/fiber_connections"><span>Fiber Connections </span></a></li>
+			    <li><a href="#/ends"><span>Ends </span></a></li>				
+			    <li><a href="#/connection_cores"><span>Connection Cores </span></a></li>
+			    <li><a href="#/clients"><span>Clients </span></a></li>				
+			    <li><a href="#/client_connections"><span>Client Connections </span></a></li>
 			</ul>
 		</div>
 		<!-- End Main Nav -->
@@ -97,7 +104,7 @@
 									<td>{{(entryLimit*(currentPage-1)+1)+($index) }}</td>
 									<td><a href="#/color_detail/{{ color.id }}">{{color.name}}</a></td>
 									<td>{{color.hexcode}}</td>
-									<td>{{color.user_id}}</td>		
+									<td><a href="#/user_detail/{{color.user.id}}">{{color.user.username}}</a></td>		
 									<td>{{color.created_at}}</td>									
 									<td>{{color.updated_at}}</td>							
 									<td><a href="#/colors/{{color.id}}" class="ico edit">Edit</a>

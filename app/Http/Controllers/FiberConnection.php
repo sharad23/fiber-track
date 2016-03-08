@@ -137,12 +137,15 @@ class FiberConnection extends Controller {
                  $newend = new \App\Model\End(array('name'=> $request->input('new_end'),'location_id'=>$request->input('new_end_location_id'),'user_id'=>\Auth::user()->id));
 		         $newend->save();
                  $newend_id = $newend->id;
+
+
 		   }
 		   else{
 
 		   	     $newend_id = $request->input('new_end_id');
 		   }
 
+           
 		   $conn = \App\Model\FiberConnection::with('cores')
 		                                      ->where('id',$id)
 		                                      ->first();

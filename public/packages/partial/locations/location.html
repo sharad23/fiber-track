@@ -16,9 +16,16 @@
 		<!-- Main Nav -->
 		<div id="navigation">
 			<ul>
-			    <li><a href="#/"><span>Dashboard</span></a></li>
-			    <li><a href="#/" class="active"><span>Colors </span></a></li>				
-			    <li><a href="#/location"><span>Location </span></a></li>
+			     <li><a href="#/"><span>Dashboard</span></a></li>
+			    <li><a href="#/colors" ><span>Colors </span></a></li>				
+			    <li><a href="#/locations" class="active"><span>Locations </span></a></li>			
+			    <li><a href="#/fibers"><span>Fibers </span></a></li>					
+			    <li><a href="#/fiber_cores"><span>Fiber Cores </span></a></li>		
+			    <li><a href="#/fiber_connections"><span>Fiber Connections </span></a></li>
+			    <li><a href="#/ends"><span>Ends </span></a></li>				
+			    <li><a href="#/connection_cores"><span>Connection Cores </span></a></li>
+			    <li><a href="#/clients"><span>Clients </span></a></li>				
+			    <li><a href="#/client_connections"><span>Client Connections </span></a></li>
 			</ul>
 		</div>
 		<!-- End Main Nav -->
@@ -33,7 +40,7 @@
 		
 		<!-- Small Nav -->
 		<div class="small-nav">
-			<a href="#">Dashboard</a>
+			<a href="#/">Dashboard</a>
 			<span>&gt;</span>
 			Locations
 		</div>
@@ -69,6 +76,11 @@
 									<span ng-show="sortKey == 'id' && !reverse" class="fa fa-caret-down"></span>
 									<span ng-show="sortKey == 'id' && reverse" class="fa fa-caret-up"></span>
 								</th>
+								<th ng-click="sort('name')">Name
+									<span ng-show="sortKey == 'name' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'name' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								
 								<th ng-click="sort('user_id')">Updated By
 									<span ng-show="sortKey == 'user_id' && !reverse" class="fa fa-caret-down"></span>
 									<span ng-show="sortKey == 'user_id' && reverse" class="fa fa-caret-up"></span>
@@ -87,12 +99,12 @@
 								<tr class="paginationclass" ng-repeat="location in filtered=(locations | filter:search) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit|orderBy:sortKey:reverse">
 								
 									<td>{{(entryLimit*(currentPage-1)+1)+($index) }}</td>
-									<td>{{location.name}}</td>
+									<td><a href="#/location_detail/{{ location.id }}">{{location.name}}</a></td>
 									<td>{{location.user_id}}</td>		
 									<td>{{location.created_at}}</td>									
 									<td>{{location.updated_at}}</td>							
-									<td><a href="#/location/{{location.id}}" class="ico edit">Edit</a>
-									<a ng-click="removelocation(location.id)" class="ico del">Delete</a></td>
+									<td><a href="#/locations/{{location.id}}" class="ico edit">Edit</a>
+									<a ng-click="removecolor(location.id)" class="ico del">Delete</a></td>
 								</tr>						
 							</tbody>
 						
@@ -120,13 +132,17 @@
 					
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2>Summary</h2>
+						<h2>Control</h2>
 					</div>
 					<!-- End Box Head-->
 					
 					<div class="box-content">
-						<a href="#/location/add" class="add-button"><span>Add new Location</span></a>
-						<div class="cl">&nbsp;</div>
+						<ul>
+						<li class="btn">
+						<a href="#/locations/add"><span>Add new Location</span></a>
+						</li>
+						
+					</ul>
 						
 					</div>
 				</div>

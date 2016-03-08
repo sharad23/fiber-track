@@ -10,10 +10,16 @@ class EventServiceProvider extends ServiceProvider {
 	 *
 	 * @var array
 	 */
-	protected $listen = [
-		'event.name' => [
-			'EventListener',
+	protected $listen = [ 
+		'App\Events\FiberBreak' => [
+			'App\Handlers\Events\UpdateExistingConnection'
 		],
+		'App\Events\AddEnd' => [
+			'App\Handlers\Events\AddEndHandler'
+		],
+		'App\Events\UpdateFiberConnectionCore' => [
+            'App\Handlers\Events\UpdateTheFlag'
+		]
 	];
 
 	/**
@@ -33,7 +39,7 @@ class EventServiceProvider extends ServiceProvider {
         \App\Model\FiberConnection::observe(new \App\Observers\FiberConnectionObserver);
         \App\Model\Fiber::observe(new \App\Observers\FiberObserver);
         \App\Model\End::observe(new \App\Observers\EndObserver);
-		
+		\App\Model\Client::observe(new \App\Observers\ClientObserver);
 	}
 
 }

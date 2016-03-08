@@ -1,7 +1,41 @@
 
 var location = angular.module('locations',[]);
 
-color.factory('locationdata', function($http) {
+
+location.config(function configure($routeProvider) {
+
+	$routeProvider
+				 .when('/locations', 
+		         	      { 
+		         	      	controller: 'LocationController', 
+		         	      	templateUrl: './packages/partial/locations/location.html' 
+		         	      }
+		         	  )
+					  
+				.when('/locations/add', 
+					  { 
+						controller: 'LocationController', 
+						templateUrl: './packages/partial/locations/location_add.html' 
+					  }
+				  )
+				  
+				.when('/locations/:id', 
+					  { 
+						controller: 'LocationEditController', 
+						templateUrl: './packages/partial/locations/location_edit.html' 
+					  }
+				  )
+				  
+				.when('/location_detail/:id', 
+					  { 
+						controller: 'LocationDetailController', 
+						templateUrl: './packages/partial/locations/location_detail.html' 
+					  }
+				  )
+				
+});
+
+location.factory('locationdata', function($http) {
 
 	return {
 			getLocations: function() { 
@@ -48,7 +82,7 @@ color.factory('locationdata', function($http) {
 });
 
 
-color.controller('LocationController', function ($scope,$rootScope,$location,locationdata) {
+location.controller('LocationController', function ($scope,$rootScope,$location,locationdata) {
 
 
 				locationdata.getLocations().success(function(data) {									
@@ -88,7 +122,7 @@ color.controller('LocationController', function ($scope,$rootScope,$location,loc
 						
 						 var dataObject = $scope.newLocation;
 						
-						locationdata.addColor(dataObject).success(LocationAddSuccess).error(LocationAddError);
+						locationdata.addLocation(dataObject).success(LocationAddSuccess).error(LocationAddError);
 						
 					
 					};
@@ -115,7 +149,7 @@ color.controller('LocationController', function ($scope,$rootScope,$location,loc
    
 								if (confirm('Do you really want to remove this user?')) {
 										
-										colordata.removeLocation(id).success(function (data) {
+										locationdata.removeLocation(id).success(function (data) {
 																		
 																		 for (i in $scope.locations) {
 																				if ($scope.locations[i].id == id) {
@@ -131,7 +165,7 @@ color.controller('LocationController', function ($scope,$rootScope,$location,loc
 });
 
 
-app.controller('LocationEditController', function ($scope,$filter,$rootScope,$routeParams,$location,locationdata) {
+location.controller('LocationEditController', function ($scope,$filter,$rootScope,$routeParams,$location,locationdata) {
 
 		console.log($rootScope.locations);
 
@@ -168,17 +202,17 @@ app.controller('LocationEditController', function ($scope,$filter,$rootScope,$ro
 });
 
 
-app.controller('ColorDetailController', function ($scope,$routeParams,colordata) {
+location.controller('LocationDetailController', function ($scope,$routeParams,locationdata) {
 			
-			var color_id=$routeParams.id;
+			var location_id=$routeParams.id;
 			
-					colordata.getColor(color_id).success(ColorDetailSuccess).error(ColorDetailError);
+					locationdata.getLocation(location_id).success(LocationDetailSuccess).error(LocationDetailError);
 					
-					function ColorDetailSuccess(data) {
-					$scope.viewcolor = data;
+					function LocationDetailSuccess(data) {
+					$scope.viewlovation = data;
 					}
 				 
-					function ColorDetailError(data) {
+					function LocationDetailError(data) {
 					
 					$scope.error = "Unable to show user details.";
 						
@@ -188,18 +222,7 @@ app.controller('ColorDetailController', function ($scope,$routeParams,colordata)
 });
 
 
-app.filter('getById', function() {
-  return function(input,id) {
-    var i=0, len=input.length;
-    for (; i<len; i++) {
-	
-      if (input[i].id == id) {
-        return input[i];
-      }
-    }
-    return null;
-  }
-});
+
 
 
 

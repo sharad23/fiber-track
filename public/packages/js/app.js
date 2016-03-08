@@ -1,8 +1,6 @@
 
 //angular.js example for factory vs service
-var app = angular.module('app', ['ngRoute','ui.bootstrap','colors']);
-
-
+var app = angular.module('app', ['ngRoute','ui.bootstrap','colors','fibers','fiber_cores','fiber_connections','ends','connection_cores','clients','client_connections']);
 
 app.run(function($http) {
      $http.defaults.headers.common['x-access-token'] ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibmFtZSI6IlNoYXJhZCBCYWlkeWEiLCJlbWFpbCI6ImJhaWR5YXNoYXJhZEBnbWFpbC5jb20iLCJjcmVhdGVkX2F0IjoiLTAwMDEtMTEtMzAgMDA6MDA6MDAiLCJ1cGRhdGVkX2F0IjoiMjAxNi0wMy0wMiAwNzowODo0MSIsInVzZXJuYW1lIjoic2hhcmFkMjMiLCJwYXNzd29yZCI6ImlsdXZjYW5hZGEifQ.8gt7FNT436fQpZdxpOy3r5YhPjQMVaW54JmRMW7y4NY';
@@ -13,43 +11,35 @@ app.run(function($http) {
 app.config(function configure($routeProvider) {
 
 	$routeProvider
-		      .when('/colors', 
+				.when('/', 
 		         	      { 
-		         	      	controller: 'ColorController', 
-		         	      	templateUrl: './packages/partial/colors/color.html' 
+		         	      	controller: 'HomeController', 
+		         	      	templateUrl: './packages/partial/index.html' 
 		         	      }
 		         	  )
-				  
-				.when('/colors/add', 
-					  { 
-						controller: 'ColorController', 
-						templateUrl: './packages/partial/colors/color_add.html' 
-					  }
-				  )
-				  
-				.when('/colors/:id', 
-					  { 
-						controller: 'ColorEditController', 
-						templateUrl: './packages/partial/colors/color_edit.html' 
-					  }
-				  )
-				  
-				.when('/color_detail/:id', 
-					  { 
-						controller: 'ColorDetailController', 
-						templateUrl: './packages/partial/colors/color_detail.html' 
-					  }
-				  )
-					  
-				 .when('/locations', 
-		         	      { 
-		         	      	controller: 'LocationController', 
-		         	      	templateUrl: './packages/partial/locations/location.html' 
-		         	      }
-		         	  )
-				
+		      
 });
 
+
+
+app.controller('HomeController', function () {
+
+		 
+					
+});
+
+app.filter('getById', function() {
+  return function(input,id) {
+    var i=0, len=input.length;
+    for (; i<len; i++) {
+	
+      if (input[i].id == id) {
+        return input[i];
+      }
+    }
+    return null;
+  }
+});
 
 
 app.filter('startFrom', function() {

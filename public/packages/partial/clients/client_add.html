@@ -1,0 +1,159 @@
+ 
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="#"><img src="images/logo.png" height="60"></a></h1>
+			<div id="top-navigation">
+				Welcome <a href="#"><strong>Administrator</strong></a>
+				<span>|</span>
+				<a href="#/logout">Log out</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="#/" ><span>Dashboard</span></a></li>
+			    <li><a href="#/colors" ><span>Colors </span></a></li>				
+			    <li><a href="#/locations"><span>Locations </span></a></li>			
+			    <li><a href="#/fibers"><span>Fibers </span></a></li>					
+			    <li><a href="#/fiber_cores"><span>Fiber Cores </span></a></li>		
+			    <li><a href="#/fiber_connections"><span>Fiber Connections </span></a></li>
+			    <li><a href="#/ends"><span>Ends </span></a></li>				
+			    <li><a href="#/connection_cores"><span>Connection Cores </span></a></li>
+			    <li><a href="#/clients" class="active"><span>Clients </span></a></li>				
+			    <li><a href="#/client_connections"><span>Client Connections </span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container" style="min-height: 750px;">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">Dashboard</a>
+			<span>&gt;</span>
+			<a href="#/clients">Clients</a>			
+			<span>&gt;</span>
+			Create
+		</div>
+		
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Create Client</h2>
+					</div>
+					<!-- End Box Head -->
+					
+						<form ng-submit="addClient()" novalidate>
+						
+						<!-- Form -->
+						<div class="form">
+								<p>
+									<label>Name</label>
+									<input type="text" class="field size1" name="name" placeholder="NAME" ng-model="newclient.name" />
+								</p>	
+								
+								<p>
+									<label>Location</label>
+									<input type="text" class="field size1" name="location_id" placeholder="LOCATION" ng-model="newclient.location_id" />
+								</p>
+								<p>
+									<label>Service Type</label>
+									<input type="text" class="field size1" name="service_type" placeholder="SERVICE TYPE" ng-model="newclient.service_type" />
+								</p>	
+								
+								<p>
+									<label>Longitude</label>
+									<input type="text" class="field size1" name="longitude" placeholder="LONGITUDE" ng-model="newclient.longitude" />
+								</p>
+								<p>
+									<label>Latitude</label>
+									<input type="text" class="field size1" name="latitude" placeholder="LATITUDE" ng-model="newclient.latitude" />
+								</p>	
+								
+								<p>
+									<label>Core Type</label>
+									<input type="text" class="field size1" name="core_type" placeholder="CORE TYPE" ng-model="newclient.core_type" />
+								</p>
+								
+								<p>
+									<label>Pod</label>
+									<input type="text" class="field size1" name="pod_id" placeholder="POD" ng-model="newclient.pod_id" />
+								</p>
+								
+								
+						</div>
+						<!-- End Form -->
+						
+						<!-- Form Buttons -->
+						<div class="buttons">
+							<input type="submit" class="button" value="submit" />
+						</div>
+						<!-- End Form Buttons -->
+					</form>
+				</div>
+				<!-- End Box -->
+				
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Control</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content">
+						<ul>
+						<li class="btn">
+						<a href="#/clients"><span>Clients</span></a>
+						</li>
+						
+					</div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+	
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+		<span class="left">&copy; 2016 - Websurfer Nepal</span>
+		<span class="right">
+			Design & Developed by <a href="http://www.websurfer.com.np/" target="_blank" title="The Sweetest CSS Templates WorldWide">Websurfer Nepal</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->
+

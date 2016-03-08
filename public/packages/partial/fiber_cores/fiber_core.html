@@ -1,0 +1,169 @@
+
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="#"><img src="images/logo.png" height="60"></a></h1>
+			<div id="top-navigation">
+				Welcome <a href="#"><strong>Administrator</strong></a>
+				<span>|</span>
+				<a href="#/logout">Log out</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="#/"><span>Dashboard</span></a></li>
+			    <li><a href="#/colors" ><span>Colors </span></a></li>				
+			    <li><a href="#/locations"><span>Locations </span></a></li>			
+			    <li><a href="#/fibers"><span>Fibers </span></a></li>					
+			    <li><a href="#/fiber_cores" class="active"><span>Fiber Cores </span></a></li>		
+			    <li><a href="#/fiber_connections"><span>Fiber Connections </span></a></li>
+			    <li><a href="#/ends"><span>Ends </span></a></li>				
+			    <li><a href="#/connection_cores"><span>Connection Cores </span></a></li>
+			    <li><a href="#/clients"><span>Clients </span></a></li>				
+			    <li><a href="#/client_connections"><span>Client Connections </span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+
+<!-- Container -->
+<div id="container" style="min-height: 750px;">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">Dashboard</a>
+			<span>&gt;</span>
+			Fiber Cores
+		</div>
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">Fiber Cores</h2>
+						<div class="right">
+							<label>Items per page:</label>
+							<input type="number" min="1" max="100" class="form-control" ng-model="entryLimit">
+							<label>Search</label>
+							<input type="text" ng-model="search" class="field small-field" ng-change="filter()" placeholder="Search">
+									<!--<input type="text" class="field small-field" />
+										<input type="submit" class="button" value="search" />-->
+						</div>
+					</div>
+					<!-- End Box Head -->
+
+				<!-- Table -->
+					<div class="table">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<thead>
+								<th ng-click="sort('id')">Id
+									<span ng-show="sortKey == 'id' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'id' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								<th ng-click="sort('fiber_id')">Fiber
+									<span ng-show="sortKey == 'fiber_id' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'fiber_id' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								<th ng-click="sort('color_id')">Color
+									<span ng-show="sortKey == 'color_id' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'color_id' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								
+								<th ng-click="sort('created_at')">Created Date
+									<span ng-show="sortKey == 'created_at' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'created_at' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								<th ng-click="sort('updated_at')">Updated Date
+									<span ng-show="sortKey == 'updated_at' && !reverse" class="fa fa-caret-down"></span>
+									<span ng-show="sortKey == 'updated_at' && reverse" class="fa fa-caret-up"></span>
+								</th>
+								<th width="110" class="ac">Action</th>									
+							</thead>
+							<tbody>
+								<tr class="paginationclass" ng-repeat="fiber_core in filtered=(fiber_cores | filter:search) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit|orderBy:sortKey:reverse">
+								
+									<td>{{(entryLimit*(currentPage-1)+1)+($index) }}</td>
+									<td>{{fiber_core.fiber_id}}</td>
+									<td>{{fiber_core.color_id}}</td>
+									<td>{{fiber_core.created_at}}</td>									
+									<td>{{fiber_core.updated_at}}</td>							
+									<td><a href="#/fiber_cores/{{fiber_core.id}}" class="ico edit">Edit</a>
+									<a ng-click="removecolor(fiber_core.id)" class="ico del">Delete</a></td>
+								</tr>						
+							</tbody>
+						
+						</table>
+						
+						
+						<!-- Pagging -->
+						<pagination data-boundary-links="true" data-num-pages="noOfPages" data-current-page="currentPage" max-size="maxSize" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></pagination>
+						<!-- End Pagging -->
+						
+					</div>
+				<!-- Table -->
+				</div>
+				<!-- End Box -->
+				
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Control</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content">
+						<ul>
+						<li class="btn">
+						<a href="#/fiber_cores/add"><span>Add new Fiber Core</span></a>
+						</li>
+						
+					</ul>
+						
+					</div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+	
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+		<span class="left">&copy; 2016 - Websurfer Nepal</span>
+		<span class="right">
+			Design & Developed by <a href="http://www.websurfer.com.np/" target="_blank" title="The Sweetest CSS Templates WorldWide">Websurfer Nepal</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->

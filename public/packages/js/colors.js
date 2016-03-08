@@ -1,6 +1,43 @@
 
 var color = angular.module('colors',[]);
 
+
+
+color.config(function configure($routeProvider) {
+
+	$routeProvider
+				.when('/colors', 
+		         	      { 
+		         	      	controller: 'ColorController', 
+		         	      	templateUrl: './packages/partial/colors/color.html' 
+		         	      }
+		         	  )
+				  
+				.when('/colors/add', 
+					  { 
+						controller: 'ColorController', 
+						templateUrl: './packages/partial/colors/color_add.html' 
+					  }
+				  )
+				  
+				.when('/colors/:id', 
+					  { 
+						controller: 'ColorEditController', 
+						templateUrl: './packages/partial/colors/color_edit.html' 
+					  }
+				  )
+				  
+				.when('/color_detail/:id', 
+					  { 
+						controller: 'ColorDetailController', 
+						templateUrl: './packages/partial/colors/color_detail.html' 
+					  }
+				  )
+				
+				
+});
+
+
 color.factory('colordata', function($http) {
 
 	return {
@@ -134,7 +171,7 @@ color.controller('ColorController', function ($scope,$rootScope,$location,colord
 });
 
 
-app.controller('ColorEditController', function ($scope,$filter,$rootScope,$routeParams,$location,colordata) {
+color.controller('ColorEditController', function ($scope,$filter,$rootScope,$routeParams,$location,colordata) {
 
 		console.log($rootScope.colors);
 
@@ -171,7 +208,7 @@ app.controller('ColorEditController', function ($scope,$filter,$rootScope,$route
 });
 
 
-app.controller('ColorDetailController', function ($scope,$routeParams,colordata) {
+color.controller('ColorDetailController', function ($scope,$routeParams,colordata) {
 			
 			var color_id=$routeParams.id;
 			
@@ -191,18 +228,6 @@ app.controller('ColorDetailController', function ($scope,$routeParams,colordata)
 });
 
 
-app.filter('getById', function() {
-  return function(input,id) {
-    var i=0, len=input.length;
-    for (; i<len; i++) {
-	
-      if (input[i].id == id) {
-        return input[i];
-      }
-    }
-    return null;
-  }
-});
 
 
 

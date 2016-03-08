@@ -13,12 +13,12 @@ class ClientConnection extends Model {
 		  return $this->belongsTo('App\Model\Client','client_id','id');
 	}
 
-	public function connection_core_id1(){
+	public function connection_core_1(){
           
           return $this->belongsTo('App\Model\FiberConnectionCore','connection_core_id1','id');
 	}
 
-	public function connection_core_id2(){
+	public function connection_core_2(){
           
           return $this->belongsTo('App\Model\FiberConnectionCore','connection_core_id2','id');
 	}

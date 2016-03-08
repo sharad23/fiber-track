@@ -1,0 +1,142 @@
+ 
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="#"><img src="images/logo.png" height="60"></a></h1>
+			<div id="top-navigation">
+				Welcome <a href="#"><strong>Administrator</strong></a>
+				<span>|</span>
+				<a href="#/logout">Log out</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="#/" ><span>Dashboard</span></a></li>
+			    <li><a href="#/colors" ><span>Colors </span></a></li>				
+			    <li><a href="#/locations"><span>Locations </span></a></li>			
+			    <li><a href="#/fibers"><span>Fibers </span></a></li>					
+			    <li><a href="#/fiber_cores"><span>Fiber Cores </span></a></li>		
+			    <li><a href="#/fiber_connections"><span>Fiber Connections </span></a></li>
+			    <li><a href="#/ends"><span>Ends </span></a></li>				
+			    <li><a href="#/connection_cores"><span>Connection Cores </span></a></li>
+			    <li><a href="#/clients"><span>Clients </span></a></li>				
+			    <li><a href="#/client_connections" class="active"><span>Client Connections </span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+
+
+
+<!-- Container -->
+<div id="container">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#/">Dashboard</a>
+			<span>&gt;</span>
+			<a href="#/client_connections"  class="active">Client Connections</a>			
+			<span>&gt;</span>
+			Details
+		</div>
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">Client Connection Detail</h2>
+						<div class="right">
+						
+						</div>
+					</div>
+					<!-- End Box Head -->	
+					
+					<div class="box-body">
+						<dl class="dl-horizontal">
+							<dt>Order:</dt>
+							<dd>{{viewclient_connection[0].order}}</dd>
+							<dt>Connection Core 1:</dt>
+							<dd>{{viewclient_connection[0].connection_core_id1}}</dd>
+							<dt>Connection Core 2:</dt>
+							<dd>{{viewclient_connection[0].connection_core_id2}}</dd>
+							<dt>Client:</dt>
+							<dd>{{viewclient_connection[0].client_id}}</dd>
+							<dt>Connection:</dt>
+							<dd>{{viewclient_connection[0].connection_id}}</dd>
+							<dt>Created At:</dt>
+							<dd>{{viewclient_connection[0].created_at}}</dd>
+							<dt>Updated At:</dt>
+							<dd>{{viewclient_connection[0].updated_at}}</dd>
+							
+						</dl>
+						
+					</div>
+					
+				</div>
+				<!-- End Box -->
+				
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Controls</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content">
+					<ul>
+						<li class="btn">
+						<a href="#/client_connections/add"><span>Add new Client Connection</span></a>
+						</li>
+						<li class="btn">
+						<a href="#/client_connections"><span>Client Connections</span></a>
+						</li>
+					</ul>
+						
+					</div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+	
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+		<span class="left">&copy; 2016 - Websurfer Nepal</span>
+		<span class="right">
+			Design & Developed by <a href="http://www.websurfer.com.np/" target="_blank" title="The Sweetest CSS Templates WorldWide">Websurfer Nepal</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->
