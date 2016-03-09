@@ -183,7 +183,7 @@ app.controller('endEditController', function ($scope,$filter,$rootScope,$routePa
 					
 						console.log($scope.enddata);
 						
-						var dataObject = {id :$routeParams.id,name: $scope.enddata.name,hexcode: $scope.enddata.hexcode};
+						var dataObject = {id :$routeParams.id,name: $scope.enddata.name,location_id: $scope.enddata.location_id,longitude:$scope.enddata.longitude,lattitude:$scope.enddata.lattitude};
 						
 						enddata.editend(dataObject).success(endEditSuccess).error(endEditError);
 						

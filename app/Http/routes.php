@@ -195,6 +195,7 @@ Route::group(['prefix' => 'api','middleware' => ['token']], function()
         Route::resource('location','Location');
         Route::resource('client','Client');
         Route::resource('client-connection','ClientConnection');
+        Route::resource('user','User');
         Route::post('fiber-break/{id}','FiberConnection@fiberbreak');
 
 });

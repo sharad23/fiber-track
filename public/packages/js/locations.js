@@ -1,39 +1,43 @@
 
+
 var location = angular.module('locations',[]);
+
 
 
 location.config(function configure($routeProvider) {
 
 	$routeProvider
-				 .when('/locations', 
+				.when('/locations', 
 		         	      { 
-		         	      	controller: 'LocationController', 
+		         	      	controller: 'locationController', 
 		         	      	templateUrl: './packages/partial/locations/location.html' 
 		         	      }
 		         	  )
-					  
+				  
 				.when('/locations/add', 
 					  { 
-						controller: 'LocationController', 
+						controller: 'locationController', 
 						templateUrl: './packages/partial/locations/location_add.html' 
 					  }
 				  )
 				  
 				.when('/locations/:id', 
 					  { 
-						controller: 'LocationEditController', 
+						controller: 'locationEditController', 
 						templateUrl: './packages/partial/locations/location_edit.html' 
 					  }
 				  )
 				  
 				.when('/location_detail/:id', 
 					  { 
-						controller: 'LocationDetailController', 
+						controller: 'locationDetailController', 
 						templateUrl: './packages/partial/locations/location_detail.html' 
 					  }
 				  )
 				
+				
 });
+
 
 location.factory('locationdata', function($http) {
 
@@ -79,15 +83,17 @@ location.factory('locationdata', function($http) {
        }
 
 
+
 });
 
 
-location.controller('LocationController', function ($scope,$rootScope,$location,locationdata) {
+location.controller('locationController', function ($scope,$rootScope,$location,locationdata) {
 
 
-				locationdata.getLocations().success(function(data) {									
+				locationdata.getlocations().success(function(data) {									
 									
-									$scope.locations = data;									
+									$scope.locations = data;
+									$rootScope.locations=$scope.locations;									
 									
 									console.log($scope.locations);
 									
@@ -114,33 +120,34 @@ location.controller('LocationController', function ($scope,$rootScope,$location,
 									
 						});
 						
-					
-					$scope.newLocation = {};
+						
+						
+					$scope.newlocation = {};
 					 
 					$scope.addlocation = function () {
 					
 						
-						 var dataObject = $scope.newLocation;
+						 var dataObject = $scope.newlocation;
 						
-						locationdata.addLocation(dataObject).success(LocationAddSuccess).error(LocationAddError);
+						locationdata.addlocation(dataObject).success(locationAddSuccess).error(locationAddError);
 						
 					
 					};
 								
 					
-					function LocationAddSuccess(data) {
+					function locationAddSuccess(data) {
 					console.log(data);
 					$scope.error = null;
 					$scope.locations.push(data);					
 					console.log($scope.locations);
-					$scope.newLocation = {};
+					$scope.newlocation = {};
 					 $location.path('/locations');
 
 					}
 				 
-					function LocationAddError(data) {
+					function locationAddError(data) {
 					
-					$scope.error = "Unable to add user";
+					$scope.error = "Unable to add location";
 						
 					}
 					
@@ -149,7 +156,7 @@ location.controller('LocationController', function ($scope,$rootScope,$location,
    
 								if (confirm('Do you really want to remove this user?')) {
 										
-										locationdata.removeLocation(id).success(function (data) {
+										locationdata.removelocation(id).success(function (data) {
 																		
 																		 for (i in $scope.locations) {
 																				if ($scope.locations[i].id == id) {
@@ -165,7 +172,7 @@ location.controller('LocationController', function ($scope,$rootScope,$location,
 });
 
 
-location.controller('LocationEditController', function ($scope,$filter,$rootScope,$routeParams,$location,locationdata) {
+location.controller('locationEditController', function ($scope,$filter,$rootScope,$routeParams,$location,locationdata) {
 
 		console.log($rootScope.locations);
 
@@ -178,23 +185,23 @@ location.controller('LocationEditController', function ($scope,$filter,$rootScop
 					
 						console.log($scope.locationdata);
 						
-						var dataObject = {id :$routeParams.id,name: $scope.locationdata.name};
+						var dataObject = {id :$routeParams.id,name: $scope.locationdata.name,hexcode: $scope.locationdata.hexcode};
 						
-						locationdata.editLocation(dataObject).success(LocationEditSuccess).error(LocationEditError);
+						locationdata.editlocation(dataObject).success(locationEditSuccess).error(locationEditError);
 						
 					};
 					
 					
-					function LocationEditSuccess(data) {
+					function locationEditSuccess(data) {
 					
 					console.log(data);
 
 					}
 				 
-					function LocationEditError(data) {
+					function locationEditError(data) {
 					console.log(data);
 					
-					$scope.error = "Unable to edit Location";
+					$scope.error = "Unable to edit User";
 						
 					}
 					
@@ -202,17 +209,17 @@ location.controller('LocationEditController', function ($scope,$filter,$rootScop
 });
 
 
-location.controller('LocationDetailController', function ($scope,$routeParams,locationdata) {
+location.controller('locationDetailController', function ($scope,$routeParams,locationdata) {
 			
 			var location_id=$routeParams.id;
 			
-					locationdata.getLocation(location_id).success(LocationDetailSuccess).error(LocationDetailError);
+					locationdata.getlocation(location_id).success(locationDetailSuccess).error(locationDetailError);
 					
-					function LocationDetailSuccess(data) {
-					$scope.viewlovation = data;
+					function locationDetailSuccess(data) {
+					$scope.viewlocation = data;
 					}
 				 
-					function LocationDetailError(data) {
+					function locationDetailError(data) {
 					
 					$scope.error = "Unable to show user details.";
 						
@@ -220,7 +227,6 @@ location.controller('LocationDetailController', function ($scope,$routeParams,lo
 					
 				
 });
-
 
 
 
